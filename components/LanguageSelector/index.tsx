@@ -1,7 +1,7 @@
 export const LanguageSelector = () => {
     return (
         <div>
-            [sss
+            language
         </div>
     );
 };
