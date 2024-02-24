@@ -14,7 +14,7 @@ import 'ace-builds/src-noconflict/theme-terminal';
 import 'ace-builds/src-noconflict/theme-twilight';
 import { useEffect, useState } from 'react';
 
-export const CodeEditor = ({ language }: { language: string }) => {
+export const CodeEditor = ({ language,activeIcon, theme }: { language: string, activeIcon:any, theme:any }) => {
   const [width, setWidth] = useState<number>(1000);
   const [height, setHeight] = useState<number>(500);
   const handleResize = (
@@ -59,14 +59,17 @@ export const CodeEditor = ({ language }: { language: string }) => {
 
             <div className='w-full'>
               <input
-                className='w-full text-gray-500 outline-none font-medium text-center bg-transparent'
+                className='w-full outline-none font-medium text-center bg-transparent'
                 type='text'
               />
             </div>
+
+            {activeIcon}
+
           </div>
           <AceEditor
             mode={language}
-            theme='twilight'
+            theme={theme}
             showGutter={false}
             defaultValue="const hello = () => { console.log('Hi!') }"
             name='code-editor'
