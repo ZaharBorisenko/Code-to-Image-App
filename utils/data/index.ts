@@ -1,2 +1,2 @@
 export {Languages} from './language'
-export {Theme} from './Theme'
+export {Theme, Background} from './Theme'

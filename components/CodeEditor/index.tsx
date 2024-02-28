@@ -14,7 +14,17 @@ import 'ace-builds/src-noconflict/theme-terminal';
 import 'ace-builds/src-noconflict/theme-twilight';
 import { useEffect, useState } from 'react';
 
-export const CodeEditor = ({ language,activeIcon, theme }: { language: string, activeIcon:any, theme:any }) => {
+export const CodeEditor = ({
+  language,
+  activeIcon,
+  theme,
+  background,
+}: {
+  language: string;
+  activeIcon: any;
+  theme: any;
+  background:string
+}) => {
   const [width, setWidth] = useState<number>(1000);
   const [height, setHeight] = useState<number>(500);
   const handleResize = (
@@ -45,10 +55,12 @@ export const CodeEditor = ({ language,activeIcon, theme }: { language: string, a
           height: height || 500,
         }}
         onResize={handleResize}
+        style={{ background: background }}
         className='resize-container relative'
       >
         <div>
-          <div className='h-[52px] flex items-center justify-between bg-black
+          <div
+            className='h-[52px] flex items-center justify-between bg-black bg-opacity-80
            bg-opacity-80 mb-1 shadow-black shadow-sm border-2 border-[#FFFFFF14] rounded-t-lg px-4'
           >
             <div className='flex gap-1 items-center'>
@@ -65,7 +77,6 @@ export const CodeEditor = ({ language,activeIcon, theme }: { language: string, a
             </div>
 
             {activeIcon}
-
           </div>
           <AceEditor
             mode={language}

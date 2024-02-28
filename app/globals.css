@@ -17,10 +17,11 @@ body {
 
 .ace_scroller {
     width: 100% !important;
+    background: none;
 }
 
 .ace_editor {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     border: 2px solid rgba(255, 255, 255, 0.08);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;

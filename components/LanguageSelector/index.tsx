@@ -24,6 +24,7 @@ export const LanguageSelector: FC<propsType> = ({
   };
   return (
     <div>
+      <p>Language</p>
       <select value={language} onChange={handleLanguageChange}>
         {Languages.map(l => (
           <option key={l.name} value={l.name}>

@@ -15,6 +15,7 @@ export const ThemeSelector = ({
   };
   return (
     <div>
+      <p>Code Theme</p>
       <select value={theme} onChange={handleThemeSelector}>
         {Theme.map(theme => (
           <option key={theme.name} value={theme.name}>

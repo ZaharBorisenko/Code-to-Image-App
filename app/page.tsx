@@ -1,20 +1,23 @@
 'use client';
 import {
+  BackgroundSelector,
   CodeEditor,
   LanguageSelector,
   ThemeSelector,
 } from '@/components';
 import '@/app/globals.css';
 import { useState } from 'react';
-import { Languages, Theme } from '@/utils';
+import { Background, Languages, Theme } from '@/utils';
 import { IconBaseProps } from 'react-icons';
 
 export default function Home() {
   const [language, setLanguage] = useState<string>(Languages[0].name);
   const [theme, setTheme] = useState<string>(Theme[0].name);
+  const [background, setBackground] = useState(Background[0]);
   const [activeIcon, setActiveIcon] = useState<IconBaseProps>(
     Languages[0].icon,
   );
+  console.log(background);
   return (
     <div className='ace-editor-container flex justify-center h-screen items-center'>
       <div>
@@ -28,11 +31,18 @@ export default function Home() {
               setLanguage={setLanguage}
               setActiveIcon={setActiveIcon}
             />
+
             <ThemeSelector theme={theme} setTheme={setTheme} />
+
+            <BackgroundSelector
+              background={background}
+              setBackground={setBackground}
+            />
           </div>
         </header>
 
         <CodeEditor
+          background={background}
           language={language}
           activeIcon={activeIcon}
           theme={theme}
