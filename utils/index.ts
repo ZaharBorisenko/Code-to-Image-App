@@ -1,2 +1,2 @@
-export {Languages, Theme, Background} from './data'
+export {Languages, Theme, Background, Paddings} from './data'
 export {selectedLanguageAndIcon} from './selectedLanguageAndIcon'

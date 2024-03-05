@@ -25,3 +25,4 @@ export const Background = [
   'linear-gradient(90deg, rgb(142, 199, 251), rgb(28, 85, 170))',
   'linear-gradient(180deg, #654ea3, #da98b4)',
 ];
+export const Paddings = ['1rem', '2rem', '3rem', '4rem']

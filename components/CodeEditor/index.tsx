@@ -19,11 +19,13 @@ export const CodeEditor = ({
   activeIcon,
   theme,
   background,
+  padding,
 }: {
   language: string;
   activeIcon: any;
   theme: any;
-  background:string
+  background: string;
+  padding: string;
 }) => {
   const [width, setWidth] = useState<number>(1000);
   const [height, setHeight] = useState<number>(500);
@@ -55,14 +57,11 @@ export const CodeEditor = ({
           height: height || 500,
         }}
         onResize={handleResize}
-        style={{ background: background }}
+        style={{ background: background, padding: padding }}
         className='resize-container relative'
       >
         <div>
-          <div
-            className='h-[52px] flex items-center justify-between bg-black bg-opacity-80
-           bg-opacity-80 mb-1 shadow-black shadow-sm border-2 border-[#FFFFFF14] rounded-t-lg px-4'
-          >
+          <div className='h-[52px] flex items-center justify-between bg-black bg-opacity-80 mb-1 shadow-black shadow-sm border-2 border-[#FFFFFF14] rounded-t-lg px-4'>
             <div className='flex gap-1 items-center'>
               <div className='w-5 h-5 rounded-full bg-[#ff5656]'></div>
               <div className='w-5 h-5 rounded-full bg-[#ffbc6a]'></div>

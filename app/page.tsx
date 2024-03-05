@@ -7,17 +7,19 @@ import {
 } from '@/components';
 import '@/app/globals.css';
 import { useState } from 'react';
-import { Background, Languages, Theme } from '@/utils';
+import { Background, Languages, Paddings, Theme } from '@/utils';
 import { IconBaseProps } from 'react-icons';
+import { PaddingSelector } from '@/components/PaddingSelector';
 
 export default function Home() {
   const [language, setLanguage] = useState<string>(Languages[0].name);
   const [theme, setTheme] = useState<string>(Theme[0].name);
-  const [background, setBackground] = useState(Background[0]);
+  const [background, setBackground] = useState(Background[1]);
   const [activeIcon, setActiveIcon] = useState<IconBaseProps>(
     Languages[0].icon,
   );
-  console.log(background);
+  const [currentPadding, setCurrentPadding] = useState(Paddings[0]);
+  console.log(currentPadding);
   return (
     <div className='ace-editor-container flex justify-center h-screen items-center'>
       <div>
@@ -38,10 +40,13 @@ export default function Home() {
               background={background}
               setBackground={setBackground}
             />
+
+            <PaddingSelector setCurrentPadding={setCurrentPadding} />
           </div>
         </header>
 
         <CodeEditor
+          padding={currentPadding}
           background={background}
           language={language}
           activeIcon={activeIcon}
