@@ -12,7 +12,7 @@ import 'ace-builds/src-noconflict/mode-typescript';
 import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/src-noconflict/theme-terminal';
 import 'ace-builds/src-noconflict/theme-twilight';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 export const CodeEditor = ({
   language,
@@ -23,12 +23,13 @@ export const CodeEditor = ({
 }: {
   language: string;
   activeIcon: any;
-  theme: any;
+  theme: string;
   background: string;
   padding: string;
 }) => {
   const [width, setWidth] = useState<number>(1000);
   const [height, setHeight] = useState<number>(500);
+  const [fileName, setFileName] = useState<string>('Untitled-1');
   const handleResize = (
     evt: any,
     direction: any,
@@ -36,7 +37,7 @@ export const CodeEditor = ({
     pos: any,
   ) => {
     const newHeight = ref.style.height;
-    setHeight(parseInt(newHeight));
+    setHeight(parseInt(newHeight, 10));
   };
   const updateSize = () => {
     setWidth(window.innerWidth);
@@ -61,7 +62,7 @@ export const CodeEditor = ({
         className='resize-container relative'
       >
         <div>
-          <div className='h-[52px] flex items-center justify-between bg-black bg-opacity-80 mb-1 shadow-black shadow-sm border-2 border-[#FFFFFF14] rounded-t-lg px-4'>
+          <div className='h-[52px] flex items-center justify-between bg-black bg-opacity-80 mb-1  border-2 border-[#FFFFFF14] rounded-t-lg px-4'>
             <div className='flex gap-1 items-center'>
               <div className='w-5 h-5 rounded-full bg-[#ff5656]'></div>
               <div className='w-5 h-5 rounded-full bg-[#ffbc6a]'></div>
@@ -70,7 +71,11 @@ export const CodeEditor = ({
 
             <div className='w-full'>
               <input
-                className='w-full outline-none font-medium text-center bg-transparent'
+                value={fileName}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFileName(e.target.value)
+                }
+                className='w-full leading-10 outline-none font-medium text-center bg-transparent'
                 type='text'
               />
             </div>
@@ -84,6 +89,7 @@ export const CodeEditor = ({
             defaultValue="const hello = () => { console.log('Hi!') }"
             name='code-editor'
             fontSize={16}
+            height={`calc(${height}px - ${padding} - ${padding} - 52px)`}
             wrapEnabled={true}
             showPrintMargin={false}
             editorProps={{ $blockScrolling: true }}

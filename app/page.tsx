@@ -6,12 +6,14 @@ import {
   ThemeSelector,
 } from '@/components';
 import '@/app/globals.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Background, Languages, Paddings, Theme } from '@/utils';
 import { IconBaseProps } from 'react-icons';
 import { PaddingSelector } from '@/components/PaddingSelector';
+import html2canvas from 'html2canvas';
 
 export default function Home() {
+  const codeEditorRef = useRef<any>();
   const [language, setLanguage] = useState<string>(Languages[0].name);
   const [theme, setTheme] = useState<string>(Theme[0].name);
   const [background, setBackground] = useState(Background[1]);
@@ -19,13 +21,30 @@ export default function Home() {
     Languages[0].icon,
   );
   const [currentPadding, setCurrentPadding] = useState(Paddings[0]);
-  console.log(currentPadding);
+
+  const exportPng = async () => {
+    const editorElement = codeEditorRef.current;
+
+    if (editorElement) {
+      const canvas = await html2canvas(editorElement);
+      const image = canvas
+        .toDataURL('image/png')
+        .replace('image/png', 'image/octet-stream');
+
+      const link = document.createElement("a");
+      link.download = "code.png";
+      // @ts-ignore
+      link.href = image;
+      link.click()
+    }
+  };
+
   return (
     <div className='ace-editor-container flex justify-center h-screen items-center'>
       <div>
         <header
           className='mt-6 w-[1000px] p-5 fixed top-0 left-1/2 translate-x-[-50%]
-                     z-10 bg-[#191919] rounded border border-[#3c3c3c] shadow-sm'
+                     z-10 bg-[#191919] rounded border border-[#3c3c3c]'
         >
           <div className='flex items-center gap-x-6'>
             <LanguageSelector
@@ -41,17 +60,24 @@ export default function Home() {
               setBackground={setBackground}
             />
 
-            <PaddingSelector setCurrentPadding={setCurrentPadding} />
+            <PaddingSelector
+              currentPadding={currentPadding}
+              setCurrentPadding={setCurrentPadding}
+            />
+
+            <button onClick={exportPng}>Export PNG</button>
           </div>
         </header>
 
-        <CodeEditor
-          padding={currentPadding}
-          background={background}
-          language={language}
-          activeIcon={activeIcon}
-          theme={theme}
-        />
+        <div ref={codeEditorRef} className="mt-20">
+          <CodeEditor
+            padding={currentPadding}
+            background={background}
+            language={language}
+            activeIcon={activeIcon}
+            theme={theme}
+          />
+        </div>
       </div>
     </div>
   );
