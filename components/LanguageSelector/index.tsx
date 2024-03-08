@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Languages, selectedLanguageAndIcon } from '@/utils';
-import {IconBaseProps} from "react-icons";
+import { IconBaseProps } from 'react-icons';
+import { SelectSettings } from '@/components';
 
 type propsType = {
   language: string;
@@ -24,14 +25,12 @@ export const LanguageSelector: FC<propsType> = ({
   };
   return (
     <div>
-      <p>Language</p>
-      <select value={language} onChange={handleLanguageChange}>
-        {Languages.map(l => (
-          <option key={l.name} value={l.name}>
-            {l.text}
-          </option>
-        ))}
-      </select>
+      <p className="mb-2 text-base">Language</p>
+      <SelectSettings
+        array={Languages}
+        value={language}
+        onChange={handleLanguageChange}
+      />
     </div>
   );
 };

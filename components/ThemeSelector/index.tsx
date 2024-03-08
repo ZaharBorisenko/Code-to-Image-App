@@ -1,5 +1,6 @@
 import React from 'react';
 import { Theme } from '@/utils';
+import { SelectSettings } from '@/components';
 
 export const ThemeSelector = ({
   theme,
@@ -15,14 +16,12 @@ export const ThemeSelector = ({
   };
   return (
     <div>
-      <p>Code Theme</p>
-      <select value={theme} onChange={handleThemeSelector}>
-        {Theme.map(theme => (
-          <option key={theme.name} value={theme.name}>
-            {theme.text}
-          </option>
-        ))}
-      </select>
+      <p className="mb-2 text-base">Code Theme</p>
+      <SelectSettings
+        array={Theme}
+        value={theme}
+        onChange={handleThemeSelector}
+      />
     </div>
   );
 };

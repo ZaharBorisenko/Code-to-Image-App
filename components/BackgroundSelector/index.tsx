@@ -10,8 +10,8 @@ export const BackgroundSelector = ({
 }) => {
   return (
     <div>
-      <p>Выберите фон</p>
-      <div className='flex items-center gap-x-2'>
+      <p className="mb-2 text-base">Select background</p>
+      <div className='flex items-center gap-2 max-w-[200px] flex-wrap'>
         {Background.map((b, index) => (
             <div
                 key={index}

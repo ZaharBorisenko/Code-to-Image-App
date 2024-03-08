@@ -31,11 +31,11 @@ export default function Home() {
         .toDataURL('image/png')
         .replace('image/png', 'image/octet-stream');
 
-      const link = document.createElement("a");
-      link.download = "code.png";
+      const link = document.createElement('a');
+      link.download = 'code.png';
       // @ts-ignore
       link.href = image;
-      link.click()
+      link.click();
     }
   };
 
@@ -46,7 +46,7 @@ export default function Home() {
           className='mt-6 w-[1000px] p-5 fixed top-0 left-1/2 translate-x-[-50%]
                      z-10 bg-[#191919] rounded border border-[#3c3c3c]'
         >
-          <div className='flex items-center gap-x-6'>
+          <div className='flex justify-between items-end gap-x-6'>
             <LanguageSelector
               language={language}
               setLanguage={setLanguage}
@@ -65,11 +65,16 @@ export default function Home() {
               setCurrentPadding={setCurrentPadding}
             />
 
-            <button onClick={exportPng}>Export PNG</button>
+            <button
+                className='bg-blue-700 h-[50px] text-white rounded-lg px-3 hover:bg-blue-900'
+                onClick={exportPng}
+            >
+              Export PNG
+            </button>
           </div>
         </header>
 
-        <div ref={codeEditorRef} className="mt-20">
+        <div ref={codeEditorRef} className='mt-20'>
           <CodeEditor
             padding={currentPadding}
             background={background}
