@@ -15,7 +15,7 @@ export const PaddingSelector = ({
         {Paddings.map((p, index) => (
           <div
             className={`cursor-pointer border-2 border-gray-500 text-white font-medium p-1 
-            rounded-lg ${p === currentPadding && 'border-blue-700'}`}
+            rounded-lg ${p === currentPadding && 'border-blue-700 border'}`}
             onClick={() => setCurrentPadding(Paddings[index])}
             key={index}
           >
