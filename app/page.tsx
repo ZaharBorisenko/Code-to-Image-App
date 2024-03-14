@@ -40,12 +40,9 @@ export default function Home() {
   };
 
   return (
-    <div className='ace-editor-container flex justify-center h-screen items-center'>
+    <div className='ace-editor-container flex justify-center items-center'>
       <div>
-        <header
-          className='mt-6 w-[1000px] p-5 fixed top-0 left-1/2 translate-x-[-50%]
-                     z-10 bg-[#191919] rounded border border-[#3c3c3c]'
-        >
+        <header className='w-[1000px] p-5 bg-[#191919] rounded border border-[#3c3c3c] mt-5'>
           <div className='flex justify-between items-end gap-x-6'>
             <LanguageSelector
               language={language}
@@ -66,15 +63,15 @@ export default function Home() {
             />
 
             <button
-                className='bg-blue-700 h-[50px] text-white rounded-lg px-3 hover:bg-blue-900'
-                onClick={exportPng}
+              className='bg-blue-700 h-[50px] text-white rounded-lg px-3 hover:bg-blue-900'
+              onClick={exportPng}
             >
               Export PNG
             </button>
           </div>
         </header>
 
-        <div ref={codeEditorRef} className='mt-20'>
+        <div ref={codeEditorRef} className='flex justify-center text-center items-center mt-5'>
           <CodeEditor
             padding={currentPadding}
             background={background}

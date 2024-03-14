@@ -48,7 +48,7 @@ export const CodeEditor = ({
     return () => window.removeEventListener('resize', updateSize);
   }, []);
   return (
-    <div>
+    <div className="">
       <Resizable
         minHeight={466}
         minWidth={510}
@@ -58,7 +58,7 @@ export const CodeEditor = ({
           height: height || 500,
         }}
         onResize={handleResize}
-        style={{ background: background, padding: padding }}
+        style={{ background: background, padding: padding}}
         className='resize-container relative'
       >
         <div>
