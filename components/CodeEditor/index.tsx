@@ -13,20 +13,24 @@ import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/src-noconflict/theme-terminal';
 import 'ace-builds/src-noconflict/theme-twilight';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useAppSelector } from '@/redux/hook';
 
 export const CodeEditor = ({
   language,
   activeIcon,
   theme,
-  background,
-  padding,
 }: {
   language: string;
   activeIcon: any;
   theme: string;
-  background: string;
-  padding: string;
 }) => {
+  const background = useAppSelector(
+    state => state.codeEditorSlice.background,
+  );
+  const padding = useAppSelector(
+    state => state.codeEditorSlice.padding,
+  );
   const [width, setWidth] = useState<number>(1000);
   const [height, setHeight] = useState<number>(500);
   const [fileName, setFileName] = useState<string>('Untitled-1');
@@ -48,7 +52,7 @@ export const CodeEditor = ({
     return () => window.removeEventListener('resize', updateSize);
   }, []);
   return (
-    <div className="">
+    <div className=''>
       <Resizable
         minHeight={466}
         minWidth={510}
@@ -58,7 +62,7 @@ export const CodeEditor = ({
           height: height || 500,
         }}
         onResize={handleResize}
-        style={{ background: background, padding: padding}}
+        style={{background, padding}}
         className='resize-container relative'
       >
         <div>

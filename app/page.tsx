@@ -16,11 +16,9 @@ export default function Home() {
   const codeEditorRef = useRef<any>();
   const [language, setLanguage] = useState<string>(Languages[0].name);
   const [theme, setTheme] = useState<string>(Theme[0].name);
-  const [background, setBackground] = useState(Background[1]);
   const [activeIcon, setActiveIcon] = useState<IconBaseProps>(
     Languages[0].icon,
   );
-  const [currentPadding, setCurrentPadding] = useState(Paddings[0]);
 
   const exportPng = async () => {
     const editorElement = codeEditorRef.current;
@@ -52,15 +50,9 @@ export default function Home() {
 
             <ThemeSelector theme={theme} setTheme={setTheme} />
 
-            <BackgroundSelector
-              background={background}
-              setBackground={setBackground}
-            />
+            <BackgroundSelector/>
 
-            <PaddingSelector
-              currentPadding={currentPadding}
-              setCurrentPadding={setCurrentPadding}
-            />
+            <PaddingSelector/>
 
             <button
               className='bg-blue-700 h-[50px] text-white rounded-lg px-3 hover:bg-blue-900'
@@ -73,8 +65,6 @@ export default function Home() {
 
         <div ref={codeEditorRef} className='flex justify-center text-center items-center mt-5'>
           <CodeEditor
-            padding={currentPadding}
-            background={background}
             language={language}
             activeIcon={activeIcon}
             theme={theme}
