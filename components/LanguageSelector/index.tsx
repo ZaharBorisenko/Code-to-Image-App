@@ -1,31 +1,23 @@
-import React, { FC } from 'react';
-import { Languages, selectedLanguageAndIcon } from '@/utils';
-import { IconBaseProps } from 'react-icons';
+import React from 'react';
+import { Languages } from '@/utils';
 import { SelectSettings } from '@/components';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
+import {setLanguage} from "@/redux/Slices/codeEditorSlice";
 
-type propsType = {
-  language: string;
-  setLanguage: (language: string) => void;
-  setActiveIcon: (activeIcon: IconBaseProps) => void;
-};
-export const LanguageSelector: FC<propsType> = ({
-  language,
-  setLanguage,
-  setActiveIcon,
-}) => {
+export const LanguageSelector = () => {
+  const dispatch = useAppDispatch();
+  const language = useAppSelector(
+    state => state.codeEditorSlice.language,
+  );
   const handleLanguageChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const selectedLanguage = event.target.value;
-    selectedLanguageAndIcon(
-      setLanguage,
-      setActiveIcon,
-      selectedLanguage,
-    );
+    dispatch(setLanguage(selectedLanguage))
   };
   return (
     <div>
-      <p className="mb-2 text-base">Language</p>
+      <p className='mb-2 text-base'>Language</p>
       <SelectSettings
         array={Languages}
         value={language}

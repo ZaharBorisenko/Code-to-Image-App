@@ -16,21 +16,18 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppSelector } from '@/redux/hook';
 
-export const CodeEditor = ({
-  language,
-  activeIcon,
-  theme,
-}: {
-  language: string;
-  activeIcon: any;
-  theme: string;
-}) => {
+export const CodeEditor = () => {
+  const iconLanguage = useAppSelector(state => state.codeEditorSlice.icon);
+  const language = useAppSelector(
+    state => state.codeEditorSlice.language,
+  );
   const background = useAppSelector(
     state => state.codeEditorSlice.background,
   );
   const padding = useAppSelector(
     state => state.codeEditorSlice.padding,
   );
+  const theme = useAppSelector(state => state.codeEditorSlice.theme);
   const [width, setWidth] = useState<number>(1000);
   const [height, setHeight] = useState<number>(500);
   const [fileName, setFileName] = useState<string>('Untitled-1');
@@ -62,7 +59,7 @@ export const CodeEditor = ({
           height: height || 500,
         }}
         onResize={handleResize}
-        style={{background, padding}}
+        style={{ background, padding }}
         className='resize-container relative'
       >
         <div>
@@ -84,7 +81,7 @@ export const CodeEditor = ({
               />
             </div>
 
-            {activeIcon}
+            {iconLanguage}
           </div>
           <AceEditor
             mode={language}
