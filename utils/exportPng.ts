@@ -10,7 +10,7 @@ export const exportPng = async (codeEditorRef:any) => {
             .replace('image/png', 'image/octet-stream');
 
         const link = document.createElement('a');
-        link.download = 'code.png';
+        link.download = 'pages.png';
         // @ts-ignore
         link.href = image;
         link.click();
