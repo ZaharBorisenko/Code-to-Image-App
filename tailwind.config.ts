@@ -13,6 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        wiggle: {
+          '0%,100%': { transform: 'translateX(0px)' },
+          '50%': { transform: 'translateX(10px)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 3s ease-in-out infinite',
+      }
     },
   },
   plugins: [],
